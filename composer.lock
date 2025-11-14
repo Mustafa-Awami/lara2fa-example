@@ -2467,12 +2467,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mustafa-Awami/Lara2fa.git",
-                "reference": "e50260018f46929e7a8b9a755d79d0b87dd30019"
+                "reference": "0ad40b29548eb73f8246d7711d654082909e1480"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mustafa-Awami/Lara2fa/zipball/e50260018f46929e7a8b9a755d79d0b87dd30019",
-                "reference": "e50260018f46929e7a8b9a755d79d0b87dd30019",
+                "url": "https://api.github.com/repos/Mustafa-Awami/Lara2fa/zipball/0ad40b29548eb73f8246d7711d654082909e1480",
+                "reference": "0ad40b29548eb73f8246d7711d654082909e1480",
                 "shasum": ""
             },
             "require": {
@@ -2506,7 +2506,7 @@
                 "issues": "https://github.com/Mustafa-Awami/Lara2fa/issues",
                 "source": "https://github.com/Mustafa-Awami/Lara2fa/tree/v1.0.0"
             },
-            "time": "2025-11-13T21:08:19+00:00"
+            "time": "2025-11-14T19:34:42+00:00"
         },
         {
             "name": "nesbot/carbon",
