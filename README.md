@@ -28,4 +28,4 @@ In order to test the application, you need to:
     ```sh
     php artisan serve
     ```
-  - or you can use a tool like [Laravel Herd](https://herd.laravel.com/) to serve your application over HTTPS, since features such as Passkeys require a secure connection
+  - or you can use a tool like [Laravel Herd](https://herd.laravel.com/) to serve your application over HTTPS, since features such as Passkeys require a secure connection, just make sure to change `APP_URL` in the `.env` file from `http://localhost` to somthing like `http://lara2fa-example.test`
