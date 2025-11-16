@@ -2467,12 +2467,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mustafa-Awami/Lara2fa.git",
-                "reference": "3e6a80eb9c50509e56e812af32166812fa72236b"
+                "reference": "06a4545102cc73fa246bc5767ac7398ab584d8f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Mustafa-Awami/Lara2fa/zipball/3e6a80eb9c50509e56e812af32166812fa72236b",
-                "reference": "3e6a80eb9c50509e56e812af32166812fa72236b",
+                "url": "https://api.github.com/repos/Mustafa-Awami/Lara2fa/zipball/06a4545102cc73fa246bc5767ac7398ab584d8f2",
+                "reference": "06a4545102cc73fa246bc5767ac7398ab584d8f2",
                 "shasum": ""
             },
             "require": {
@@ -2506,7 +2506,7 @@
                 "issues": "https://github.com/Mustafa-Awami/Lara2fa/issues",
                 "source": "https://github.com/Mustafa-Awami/Lara2fa/tree/v1.0.0"
             },
-            "time": "2025-11-15T17:30:25+00:00"
+            "time": "2025-11-16T07:06:22+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -10490,12 +10490,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
