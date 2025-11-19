@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\RateLimiter;
-use Laravel\Fortify\Features;
 use Tests\TestCase;
+use App\Models\User;
+use MustafaAwami\Lara2fa\Features;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AuthenticationTest extends TestCase
 {
@@ -37,11 +37,6 @@ class AuthenticationTest extends TestCase
         if (! Features::canManageTwoFactorAuthentication()) {
             $this->markTestSkipped('Two-factor authentication is not enabled.');
         }
-
-        Features::twoFactorAuthentication([
-            'confirm' => true,
-            'confirmPassword' => true,
-        ]);
 
         $user = User::factory()->create();
 

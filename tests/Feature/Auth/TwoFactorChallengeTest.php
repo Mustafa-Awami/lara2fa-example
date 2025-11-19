@@ -2,11 +2,12 @@
 
 namespace Tests\Feature\Auth;
 
-use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Inertia\Testing\AssertableInertia as Assert;
-use Laravel\Fortify\Features;
 use Tests\TestCase;
+use App\Models\User;
+use MustafaAwami\Lara2fa\Lara2fa;
+use MustafaAwami\Lara2fa\Features;
+use Inertia\Testing\AssertableInertia as Assert;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TwoFactorChallengeTest extends TestCase
 {
@@ -23,22 +24,16 @@ class TwoFactorChallengeTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
-    public function test_two_factor_challenge_can_be_rendered(): void
+    public function test_two_factor_challenge_can_be_rendered_when_authenticator_app_two_factor_is_enabled(): void
     {
-        if (! Features::canManageTwoFactorAuthentication()) {
-            $this->markTestSkipped('Two-factor authentication is not enabled.');
+        if (! Features::enabled(Features::authenticatorAppTwoFactorAuthentication())) {
+            $this->markTestSkipped('authenticator app Two-factor authentication is not enabled.');
         }
 
-        Features::twoFactorAuthentication([
-            'confirm' => true,
-            'confirmPassword' => true,
-        ]);
-
-        $user = User::factory()->create();
+        $user = User::factory()->withoutTwoFactor()->create();
 
         $user->forceFill([
             'two_factor_secret' => encrypt('test-secret'),
-            'two_factor_recovery_codes' => encrypt(json_encode(['code1', 'code2'])),
             'two_factor_confirmed_at' => now(),
         ])->save();
 
@@ -50,7 +45,32 @@ class TwoFactorChallengeTest extends TestCase
         $this->get(route('two-factor.login'))
             ->assertOk()
             ->assertInertia(fn (Assert $page) => $page
-                ->component('auth/two-factor-challenge')
+                ->component(Lara2fa::getView('two-factor-challenge'))
+            );
+    }
+
+    public function test_two_factor_challenge_can_be_rendered_when_email_two_factor_is_enabled(): void
+    {
+        if (! Features::enabled(Features::emailTwoFactorAuthentication())) {
+            $this->markTestSkipped('Email two-factor authentication is not enabled.');
+        }
+
+        $user = User::factory()->withoutTwoFactor()->create();
+
+        $user->forceFill([
+            'email_two_factor_enabled_at' => now(),
+            'email_two_factor_confirmed_at' => now(),
+        ])->save();
+
+        $this->post(route('login'), [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->get(route('two-factor.login'))
+            ->assertOk()
+            ->assertInertia(fn (Assert $page) => $page
+                ->component(Lara2fa::getView('two-factor-challenge'))
             );
     }
 }
